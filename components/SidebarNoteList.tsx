@@ -1,4 +1,4 @@
-import dayjs from 'dayjs'
+import SidebarNoteItem from './SidebarNoteItem';
 
 export default async function NoteList({ notes }: { notes: Record<string, string> }) {
   const arr = Object.entries(notes);
@@ -11,13 +11,7 @@ export default async function NoteList({ notes }: { notes: Record<string, string
 
   return <ul className="notes-list">
     {arr.map(([noteId, note]) => {
-    const { title, updateTime } = JSON.parse(note);
-    return <li key={noteId}>
-      <header className="sidebar-note-header">
-        <strong>{title}</strong>
-        <small>{dayjs(updateTime).format('YYYY-MM-DD hh:mm:ss')}</small>
-      </header>
-    </li>
-  })}
+      return <SidebarNoteItem key={noteId} noteId={noteId} note={JSON.parse(note)}/>
+    })}
   </ul>
 }
