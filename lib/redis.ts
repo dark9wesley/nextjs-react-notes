@@ -37,7 +37,7 @@ export const getAllNotes = async () => {
   return notes
 }
 
-export const getNote = async (uuid: string) => {
+export const getNote = async (uuid: string): Promise<Note | null> => {
   const note = await redis.hget("notes", uuid)
   if(!note) {
     return null
